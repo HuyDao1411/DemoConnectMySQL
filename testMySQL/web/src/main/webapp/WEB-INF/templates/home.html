@@ -1,28 +1,129 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>The generated source code Web Application for Sakai</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-</head>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>AI Media</title>
+	    <link rel="stylesheet" href="/library/webjars/bootstrap/5.2.0/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="/library/skin/default-skin/tool.css">
+	    <link rel="stylesheet" href="/library/webjars/jstree/3.3.11/themes/default/style.min.css">
+	    <link rel="stylesheet" href="/library/webjars/handsontable/handsontable.full.min.css" />
+	    <link rel="stylesheet" type="text/css"  th:href="@{/resources/static/availableFiles.css}" />
+	    <!-- jQuery UI CSS -->
+	    <link rel="stylesheet" href="/library/webjars/jquery-ui/1.12.1/jquery-ui.css">
+	
+	</head>
 <body>
 
     <div th:replace="~{fragments/header :: header}">Header</div>
     <div class="container">
-        <div class="text-center">
-            <div class="lead">
-                <H1>Refer document at http://www.thymeleaf.org/doc/articles/layouts.html to make your own layout.</H1>
+        <div class="row">
+        	<div class="col-md-9">
+				<h1>AI Media</h1>
+			</div>
+            <div class="col-md-3">
+	            <h3>View mode</h3>
+	            <div class="view-mode">
+		            <select id="viewModeSelect">
+		                <option value="list">List</option>
+		                <option value="large-icons">Large icons</option>
+		            </select>
+		            <select id="fileList">
+						<option value="none">None</option>
+						<option value="none">Preview</option>
+						<option value="none">Details</option>		
+		            </select>
+	            </div>
             </div>
-            <div class="lead">Welcome to the generated source code Web Application for Sakai.</div>
-			<p>Login userId: <span th:text="${session.userDisplayName}"></span></p>
-			<p>Login Display Username: <span th:text="${session.userEid}"></span></p>
-            <p>
-                <a id="signup" class="btn btn-success btn-lg">Sign up</a>
-            </p>
-        </div>
-        <div th:insert="~{fragments/footer :: footer}">&copy; 2017 The MKS Group</div>
-    </div>
+       </div>
+	   <hr>
+       <br>
+       <div class="row">
+        	<div class="col-md-8">
+		        <div class="breadcrumbs">
+		            <a href="#" >All site files</a> &gt;
+		        </div>
+			</div>
+            <div class="col-md-4">
+		        <div class="cart-icon mt-3">
+		            <button class="btn bg-transparent border-0 p-0">
+					    <div class="cart-icon">
+					        <img th:src="@{/resources/icons/MdiFolderSync.svg}">
+					    </div>
+		            </button>
+		        </div>
+		        <button id="addToCartBtn" class="btn btn-primary">Add to cart</button>
+		        
+		        <div class="cart-icon mt-3">
+		            <button class="btn bg-transparent border-0 p-0">
+					    <div class="cart-icon">
+					        <img th:src="@{/resources/icons/Cart.svg}">
+					    </div>
 
+		                <span id="cartCount" class="badge">0</span>
+		            </button>
+		        </div>
+            </div>
+        </div>
+        <hr>
+       </div>
+
+       
+    <div class="container mt-5">
+<!--         <h1>All Collections</h1> -->
+<!--         <table class="table table-striped table-hover"> -->
+<!--             <thead> -->
+<!--                 <tr> -->
+<!--                     <th scope="col">#</th> -->
+<!--                     <th scope="col">Collection ID</th> -->
+<!--                     <th scope="col">In Collection</th> -->
+<!--                 </tr> -->
+<!--             </thead> -->
+<!--             <tbody> -->
+<!--                 <tr th:each="collection, stat : ${collections}"> -->
+<!--                     <th scope="row" th:text="${stat.count}">1</th> -->
+<!--                     <td th:text="${collection.collectionId}">Collection ID</td> -->
+<!--                     <td th:text="${collection.inCollection}">Parent Collection</td> -->
+<!--                 </tr> -->
+<!--             </tbody> -->
+<!--         </table> -->
+
+<!--         <h1>All Files</h1> -->
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name File</th>
+                    <th scope="col">Path</th>
+                    <th scope="col">File Size</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Select</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="file, stat : ${files}">
+                    <th scope="row" th:text="${stat.count}">1</th>
+                    <td>
+						<img th:src="@{/resources/icons/file-earmark-image.svg}">
+                    	<span th:text="${file.filePath}"></span>
+                    </td>
+                    <td th:text="${file.resourceId}"><a th:href="@{/file/view(uuid=${file.resourceUuid})}" th:text="${file.resourceUuid}">Path</a></td>
+                    <td th:text="${file.fileSize}">Size</td>
+                    <td><a th:href="@{/file/view(uuid=${file.resourceUuid})}" class="btn btn-primary">View</a></td>
+                	<td><input type="checkbox"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+	    <script src="/library/webjars/jquery/3.7.0/dist/jquery.min.js"></script>
+	    <script src="/library/webjars/jstree/3.3.11/jstree.min.js"></script>
+<!-- 	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script> -->
+<!-- 	    <script src="/library/webjars/jquery/1.12.4/jquery.min.js"></script> -->
+	    <script src="/library/webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+	    <script type="text/javascript" th:src="@{/resources/js/availableFile.js}"></script>
+	    <script type="text/javascript" th:src="@{/resources/js/jstree.js}"></script>
+	    <script th:inline="javascript"> var _ctx = /*[[@{/}]]*/ ''; </script>
 </body>
 </html>

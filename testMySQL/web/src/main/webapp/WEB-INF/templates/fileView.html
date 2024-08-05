@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File View</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>File Details</h1>
+        <div>
+            <p><strong>UUID:</strong> <span th:text="${file.resourceUuid}"></span></p>
+            <p><strong>File Path:</strong> <span th:text="${file.filePath}"></span></p>
+            <p><strong>File Size:</strong> <span th:text="${file.fileSize}"></span> bytes</p>
+            <p><strong>File Content:</strong></p>
+            <div>
+                <!-- Hiển thị nội dung file dựa trên kiểu dữ liệu -->
+                <div th:if="${base64Content != null}">
+                    <img th:src="'data:image/jpeg;base64,' + ${base64Content}" alt="File Content" class="img-fluid"/>
+                </div>
+                <div th:if="${file.xml != null}">
+                    <pre th:text="${file.xml}"></pre>
+                </div>
+            </div>
+        </div>
+        <a href="../" class="btn btn-primary mt-3">Back to Home</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

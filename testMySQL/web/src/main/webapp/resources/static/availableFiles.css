@@ -1,0 +1,76 @@
+.col-md-9{
+    transform: translateY(50%);
+}
+.col-md-8{
+    transform: translateY(50%);
+}
+
+.jstree-grid-view .jstree-node {
+    display: inline-block;
+    width: 200px; /* Điều chỉnh kích thước phù hợp với yêu cầu của bạn */
+    text-align: center;
+    margin: 5px;
+}
+
+.jstree-grid-view .jstree-node .jstree-anchor img {
+    width: 200px; /* Điều chỉnh kích thước biểu tượng */
+    height: 200px;
+}
+
+.cart-icon img{
+	height: 35px;
+	width: 35px;
+}
+.cart-icon {
+	margin-left: 10px;
+	margin-right:10px;
+    position: relative;
+    display: inline-block;
+}
+.cart-icon .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+.badge{
+	color:grey;
+	position: absolute;
+	transform: translate(-85%, 90%);
+	font-size: 14px; /* Điều chỉnh kích thước chữ theo ý muốn */
+}
+
+/* Không hiển thị các dòng thừa khi sử dụng display flex */
+.jstree-node {
+    display: flex;
+    align-items: center;
+    padding: 0; 
+    margin: 0; 
+    position: relative;
+}
+
+/* Điều chỉnh các ô checkbox ra phia bên ngoài và căn hàng cho nó */
+.tree-checkbox {
+    margin-left: auto;
+    margin-right: 10%; 
+    transform: translateY(-50%);
+    margin-bottom: 3px;
+}
+
+/* Điều chỉnh vị trí hiển thị của các phần tử, không bị lệch khoảng cách */
+.jstree-anchor {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    position: relative; 
+    width: 100%;
+}
+
+/* Điều chỉnh ô check box nằm trong hàng */
+.jstree-anchor .tree-checkbox {
+    right: 0;
+    transform: translateX(100%);
+}
+
+

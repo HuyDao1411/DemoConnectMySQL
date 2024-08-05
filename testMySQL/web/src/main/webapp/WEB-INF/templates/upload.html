@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>AI Media</title>
+	    <link rel="stylesheet" href="/library/webjars/bootstrap/5.2.0/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="/library/skin/default-skin/tool.css">
+	    <link rel="stylesheet" href="/library/webjars/jstree/3.3.11/themes/default/style.min.css">
+	    <link rel="stylesheet" href="/library/webjars/handsontable/handsontable.full.min.css" />
+	    <link rel="stylesheet" type="text/css"  th:href="@{/resources/static/availableFiles.css}" />
+	    <!-- jQuery UI CSS -->
+	    <link rel="stylesheet" href="/library/webjars/jquery-ui/1.12.1/jquery-ui.css">
+	
+	</head>
+<body>
+    <div th:replace="~{fragments/header :: header}">Header</div>
+    <h1>Upload Collection</h1>
+    <form method="POST" enctype="multipart/form-data" th:action="@{/collections/upload}">
+        <input type="text" name="collectionId" placeholder="Collection ID" required/>
+        <input type="file" name="file"/>
+        <button type="submit">Upload</button>
+    </form>
+    <p th:text="${message}"></p>
+</body>
+</html>
